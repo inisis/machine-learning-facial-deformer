@@ -1,0 +1,10 @@
+torch == 1.7.1+cu110
+torchvision == 0.8.2+cu110
+Cython == 0.29.21
+tensorflow == 1.15.0
+numpy == 1.16.2
+pyyaml == 5.3
+easydict == 1.9
+pytest-flake8 == 1.0.4
+
+#  -i https://mirrors.aliyun.com/pypi/simple/

@@ -1,0 +1,24 @@
+TRAIN:
+    TRAIN_CSV: D:/data/ray/csv/train.csv
+    DEV_CSV: D:/data/ray/csv/dev.csv
+    TRAIN_BATCH_SIZE: 1024
+    DEV_BATCH_SIZE: 1024
+    EPOCH: 20000
+    LOG_EVERY: 10
+    DEV_EVERY: 100
+    BASE_DEPTH: 7
+    NUM_RIG_PARAM: 99
+    EMBEDDING_SIZE: 100
+    MESH_VERTEX_SIZE: 9978
+    LOSS_CRITERION: MSE
+MODEL:
+    PRETRAINED: null
+    MESH_MEAN_FILE: D:/data/ray/pca/mean.npy
+    MESH_FEAT_VEC_FILE: D:/data/ray/pca/featVec.npy
+SOLVER:
+    LR: 0.0001
+    LR_FACTOR: 0.1
+    LR_EPOCHS: [12000, 16000]
+    MOMENTUMS: 0.9
+    WEIGHT_DECAY: 0
+    OPTIMIZER: Adam
