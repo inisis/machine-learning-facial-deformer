@@ -9,7 +9,7 @@ This repo is used to map Controller value to Mesh Vertex by using Artificial Neu
 > * Numpy in Maya
 
 ## How to use it
-Character rig file [Ray](https://www.cgtarian.com/maya-character-rigs/download-free-3d-character-ray.html) is used to demonstrate my code, you can use the modified one from [google cloud](https://drive.google.com/file/d/1DuBFxXbvfaKBhhJHx0MpdswHszDL27Lz/view?usp=sharing), the modification lies in that I split the head and body.
+Character rig file [Ray](https://www.cgtarian.com/maya-character-rigs/download-free-3d-character-ray.html) is used to demonstrate my code, you can use the modified one from [google cloud](https://drive.google.com/file/d/1DuBFxXbvfaKBhhJHx0MpdswHszDL27Lz/view?usp=sharing), the modification lies in that I split the head and body. Thanks for [CGTarian](https://www.cgtarian.com/) for developing and releasing the character rig.
 
 1. Training data generation
 > * generate frames
@@ -61,4 +61,22 @@ python bin/train.py config/example.yaml "/full/path/to/your/training/save/folder
 > * python tester.py -h, eg:
 ```python on host machine
 python bin/test.py "/full/path/to/your/training/save/ckpt" "/full/path/to/your/training/config/file" "/full/path/to/your/test/csv/file"
+```
+
+## References
+> * [fast-n-deep-faces](https://github.com/stephen-w-bailey/fast-n-deep-faces)
+```bibtex
+@article{Bailey:2020:FDF,
+  note = {Presented at SIGGRAPH 2020, Washington D.C.},
+  doi = {10.1145/3386569.3392397},
+  title = {Fast and Deep Facial Deformations},
+  journal = {ACM Transactions on Graphics},
+  author = {Stephen W. Bailey and Dalton Omens and Paul Dilorenzo and James F. O'Brien},
+  number = 4,
+  month = aug,
+  volume = 39,
+  year = 2020,
+  pages = {94:1--15},
+  url = {http://graphics.berkeley.edu/papers/Bailey-FDF-2020-07/},
+}
 ```
