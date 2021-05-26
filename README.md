@@ -1,6 +1,8 @@
 # machine-learning-facial-deformer
 This repo is used to map Controller value to Mesh Vertex by using Artificial Neural Network.
 
+<div align=center><img src="image/ray.gif"></div>
+
 ## Prerequisites
 > * Maya [2018.6] [Cut ID:201903222215-65bada0e52]
 > * Python 3.6
@@ -55,7 +57,7 @@ python bin/pca.py "/full/path/to/your/training/csv/file" num_of_pca_components
 ```python on host machine
 python bin/train.py config/example.yaml "/full/path/to/your/training/save/folder" --num_workers=4 --device_ids=0
 ```
-4. Testing
+5. Testing
 > * python tester.py -h, eg:
 ```python on host machine
 python bin/test.py "/full/path/to/your/training/save/ckpt" "/full/path/to/your/training/config/file" "/full/path/to/your/test/csv/file"
