@@ -80,3 +80,15 @@ python bin/test.py "/full/path/to/your/training/save/ckpt" "/full/path/to/your/t
   url = {http://graphics.berkeley.edu/papers/Bailey-FDF-2020-07/},
 }
 ```
+
+> * FaceBaker
+```bibtex
+@inproceedings{inproceedings,
+author = {Radzihovsky, Sarah and Goes, Fernando and Meyer, Mark},
+year = {2020},
+month = {08},
+pages = {1-2},
+title = {FaceBaker: Baking Character Facial Rigs with Machine Learning},
+doi = {10.1145/3388767.3407340}
+}
+```
