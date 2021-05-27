@@ -12,18 +12,7 @@ This repo is used to map Controller value to Mesh Vertex by using Artificial Neu
 Character rig file [Ray](https://www.cgtarian.com/maya-character-rigs/download-free-3d-character-ray.html) is used to demonstrate my code, you can use the modified one from [google cloud](https://drive.google.com/file/d/1DuBFxXbvfaKBhhJHx0MpdswHszDL27Lz/view?usp=sharing), the modification lies in that I split the head and body. Thanks for [CGTarian](https://www.cgtarian.com/) for developing and releasing the character rig.
 
 1. Training data generation
-> * generate frames
-```python in Maya
-import sys
-sys.path.append("/full/path/to/top/level/of/this/repository")
-import os
-os.chdir("/full/path/to/top/level/of/this/repository")
-import script.generate_frame as gf
-gf.main(controller_file_path="/full/path/to/your/controller/file", frame_num=num_of_frames)
-```
-> * save controller value and mesh vertex to file
-
-it's recommended that you arrange your data folder like this
+> * it's recommended that you arrange your data folder like this
 ```
 data
 │
@@ -35,15 +24,26 @@ data
 │   
 └───pca
 ```
+> * you should prepare a controller config file as below if you want to train your own character, I have a default one in config/ctrlName.txt for character Ray.
+```
+Each line is as follows:
+ControlName ControlType Index MinVAlue MaxValue (DefaultValue if there is)
+Control type is either r-rotation, t-translation, or s-scale
+Index is either x, y, or z
+ray_ac_lf_upperlid t y -1 1 0.781
+      .
+      .
+      .
+ray_ac_cn_wrinkles c nose_bridge_intensity 0 2 0.5
+```
+> * then you can run below script in Maya Script Editor
 ```python in Maya
-import maya.cmds as cmds
-cmds.loadPlugin("/full/path/to/top/level/of/this/repository" + "/scripts/Ctrl2MeshCmd.py")
-
-# save neutral head
-cmds.Ctrl2MeshCmd(controllerFileFlag="/full/path/to/your/controller/file", controllerpathFlag="/full/path/to/your/controller/save/folder", meshFlag="head_mdl", meshpathFlag="/full/path/to/your/mesh/save/folder", endFlag=0)
-
-# save controller value and mesh displacement
-cmds.Ctrl2MeshCmd(controllerFileFlag="/full/path/to/your/controller/file", controllerpathFlag="/full/path/to/your/controller/save/folder", meshFlag="head_mdl", meshpathFlag="/full/path/to/your/mesh/save/folder", neutralpathFlag="/full/path/to/your/neutral/head/file")
+import sys
+sys.path.append("/full/path/to/top/level/of/this/repository")
+import os
+os.chdir("/full/path/to/top/level/of/this/repository")
+import script.generate_frame_and_save as gfs
+gfs.main(controller_file_path="/full/path/to/your/controller/file", controller_save_path="/full/path/to/your/controller/save/folder", mesh_node_name="head_mdl", mesh_save_path="/full/path/to/your/mesh/save/folder", frame_num=num_of_frames_to_generate)
 ```
 2. Training csv generation
 ```python on host machine
@@ -58,7 +58,6 @@ python bin/pca.py "/full/path/to/your/training/csv/file" num_of_pca_components
 python bin/train.py config/example.yaml "/full/path/to/your/training/save/folder" --num_workers=4 --device_ids=0
 ```
 5. Testing
-> * python tester.py -h, eg:
 ```python on host machine
 python bin/test.py "/full/path/to/your/training/save/ckpt" "/full/path/to/your/training/config/file" "/full/path/to/your/test/csv/file"
 ```

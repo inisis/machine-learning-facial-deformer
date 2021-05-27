@@ -19,7 +19,7 @@ parser.add_argument(
 def find_all_files(base):
     for root, dirs, files in os.walk(base):
         for f in sorted(files, key=lambda x: int(x[:-4]) if x[:-4].isdigit() else -1):
-            if f.endswith('.npy') and 'mesh' in root:
+            if f.endswith('.npy') and 'ctrl' in root:
                 fullname = os.path.join(root, f)
                 yield fullname
 
@@ -29,7 +29,7 @@ def run(args):
     annotations = []
 
     for i in find_all_files(args.base_dir):
-        annotation = i + ',' + i.replace('mesh', 'ctrl') + '\n'
+        annotation = i.replace('ctrl', 'mesh') + ',' + i + '\n'
         print(annotation)
         annotations.append(annotation)
 
@@ -41,7 +41,7 @@ def run(args):
         for idx, annotation in enumerate(annotations):
             if idx % 50 == 0:
                 file_dev.write(annotation)
-            # else:
+
             file_train.write(annotation)
 
 
