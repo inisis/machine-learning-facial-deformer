@@ -64,7 +64,6 @@ def save_array(array, save_path):
 
 def main(controller_file_path, controller_save_path, mesh_node_name, mesh_save_path, frame_num=200):
     controller_name, default_value, min_value, max_value = get_ctrl_name(controller_file_path)
-
     cmds.currentTime(0)
     for idx, ctrl_value in enumerate(default_value):
         cmds.setKeyframe(controller_name[idx], v=float(ctrl_value), t=0)
@@ -79,12 +78,15 @@ def main(controller_file_path, controller_save_path, mesh_node_name, mesh_save_p
             value.append(val)
 
         save_array(value, os.path.join(controller_save_path, str(index) + '.npy'))
-        cmds.currentTime(index)
+        cmds.currentTime(0)
         for idx, ctrl_value in enumerate(value):
-            cmds.setKeyframe(controller_name[idx], v=float(ctrl_value), t=index)
+            cmds.setKeyframe(controller_name[idx], v=float(ctrl_value), t=0)
 
         point_value = np.array(get_mesh_value(mesh_obj))
         save_array(point_value - neutral_head_mesh, os.path.join(mesh_save_path, str(index) + '.npy'))
+
+    save_array(default_value, os.path.join(controller_save_path, '0.npy'))
+    save_array(neutral_head_mesh - neutral_head_mesh, os.path.join(mesh_save_path, '0.npy'))
 
     save_array(neutral_head_mesh, os.path.join(mesh_save_path, 'neutralHead.npy'))
 
