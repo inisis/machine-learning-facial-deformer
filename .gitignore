@@ -2,4 +2,5 @@
 .idea
 *.npy
 *.onnx
+*.pyc
 __pycache__/
