@@ -37,7 +37,6 @@ def get_ctrl_name(controller_file_name):
 def main(controller_file_path):
     controller_name, default_value, min_value, max_value = get_ctrl_name(controller_file_path)
     for each in controller_name:
-        print()
         cmds.connectAttr("%s" % each, "ofCtrlDeformer1.%s" % (each.replace('.', '_')), f=1)
 
 
