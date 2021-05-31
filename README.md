@@ -61,6 +61,8 @@ python bin/train.py config/example.yaml "/full/path/to/your/training/save/folder
 ```python on host machine
 python bin/test.py "/full/path/to/your/training/save/ckpt" "/full/path/to/your/training/config/file" "/full/path/to/your/test/csv/file"
 ```
+6. Weight map
+<div align=center><img src="image/ray-weightmap.gif"></div>
 
 ## References
 > * [fast-n-deep-faces](https://github.com/stephen-w-bailey/fast-n-deep-faces)
