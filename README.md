@@ -3,6 +3,10 @@ This repo is used to map Controller value to Mesh Vertex by using Artificial Neu
 
 <div align=center><img src="image/ray.gif"></div>
 
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=teCuM4sGZE0"><img src="https://yt-embed.herokuapp.com/embed?v=teCuM4sGZE0" alt="Awesome Ray"></a>
+</div>
+
 ## Prerequisites
 > * Maya [2018.6] [Cut ID:201903222215-65bada0e52]
 > * Python 3.6
