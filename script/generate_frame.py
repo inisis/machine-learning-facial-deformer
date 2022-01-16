@@ -38,38 +38,11 @@ def get_ctrl_name(controller_file_name):
     return plug_name_list, default_value, min_value, max_value
 
 
-def get_obj(string):
-    SelectionList = OpenMaya.MSelectionList()
-    SelectionList.add(string)
-    obj = SelectionList.getDagPath(0)
-    return obj
-
-
-def get_mesh_value(obj):
-    print(obj)
-    MFnMesh = OpenMaya.MFnMesh(obj)
-    points = MFnMesh.getPoints(OpenMaya.MSpace.kObject)
-    point_list = []
-    for i in points:
-        point_list.append(i.x)
-        point_list.append(i.y)
-        point_list.append(i.z)
-    return point_list
-
-
-def save_array(array, save_path):
-    array = np.array(array).astype(np.float32)
-    return np.save(save_path, array)
-
-
-def main(controller_file_path, controller_save_path, mesh_node_name, mesh_save_path, frame_num=200):
+def main(controller_file_path, frame_num=200):
     controller_name, default_value, min_value, max_value = get_ctrl_name(controller_file_path)
     cmds.currentTime(0)
     for idx, ctrl_value in enumerate(default_value):
         cmds.setKeyframe(controller_name[idx], v=float(ctrl_value), t=0)
-
-    mesh_obj = get_obj(mesh_node_name)
-    neutral_head_mesh = np.array(get_mesh_value(mesh_obj))
 
     for index in range(1, frame_num):
         value = []
@@ -77,18 +50,9 @@ def main(controller_file_path, controller_save_path, mesh_node_name, mesh_save_p
             val = random.random()*(max_value[idx]-min_value[idx])+min_value[idx]
             value.append(val)
 
-        save_array(value, os.path.join(controller_save_path, str(index) + '.npy'))
-        cmds.currentTime(0)
+        cmds.currentTime(index)
         for idx, ctrl_value in enumerate(value):
-            cmds.setKeyframe(controller_name[idx], v=float(ctrl_value), t=0)
-
-        point_value = np.array(get_mesh_value(mesh_obj))
-        save_array(point_value - neutral_head_mesh, os.path.join(mesh_save_path, str(index) + '.npy'))
-
-    save_array(default_value, os.path.join(controller_save_path, '0.npy'))
-    save_array(neutral_head_mesh - neutral_head_mesh, os.path.join(mesh_save_path, '0.npy'))
-
-    save_array(neutral_head_mesh, os.path.join(mesh_save_path, 'neutralHead.npy'))
+            cmds.setKeyframe(controller_name[idx], v=float(ctrl_value), t=index)
 
 
 if __name__ == "__main__":
