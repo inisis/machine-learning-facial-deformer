@@ -10,7 +10,7 @@ This repo is used to map Controller value to Mesh Vertex by using Artificial Neu
 ## Prerequisites
 > * Maya [2018.6] [Cut ID:201903222215-65bada0e52]
 > * Python 3.6
-> * Numpy in Maya
+> * Numpy in Maya (you can download the [python env](http://p-nand-q.com/python/2015.07.12-Python2710-x64.7z) and copy the numpy under Lib/sit-packages/ to your folder)
 
 ## How to use it
 Character rig file [Ray](https://www.cgtarian.com/maya-character-rigs/download-free-3d-character-ray.html) is used to demonstrate my code, you can use the modified one from [google cloud](https://drive.google.com/file/d/1DuBFxXbvfaKBhhJHx0MpdswHszDL27Lz/view?usp=sharing), the modification lies in that I split the head and body. Thanks for [CGTarian](https://www.cgtarian.com/) for developing and releasing the character rig.
