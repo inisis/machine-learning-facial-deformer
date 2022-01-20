@@ -46,8 +46,8 @@ import sys
 sys.path.append("/full/path/to/top/level/of/this/repository")
 import os
 os.chdir("/full/path/to/top/level/of/this/repository")
-import script.generate_frame_and_save as gfs
-gfs.main(controller_file_path="/full/path/to/your/controller/file", controller_save_path="/full/path/to/your/controller/save/folder", mesh_node_name="head_mdl", mesh_save_path="/full/path/to/your/mesh/save/folder", frame_num=num_of_frames_to_generate)
+import script.generate_frame as gf
+gf.main(controller_file_path="/full/path/to/your/controller/file", frame_num=num_of_frames_to_generate)
 ```
 2. Training csv generation
 ```python on host machine
